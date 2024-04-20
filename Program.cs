@@ -1,18 +1,33 @@
-﻿
+﻿using System.Diagnostics;
 
-int[] unordered = [5, 4, 3, 2, 1, 25];
+int size = 70000000;
 
-int[] ordered = MergeSort(unordered);
+int[] unordered = new int[size];
+var dice = new Random();
+var stopwatch = new Stopwatch();
 
-foreach (var item in ordered)
+for (int i = 0; i < size; i++)
 {
-  Console.WriteLine(item);
+  unordered[i] = dice.Next(-1000,1000);
 }
+stopwatch.Start();
+int[] ordered = MergeSort(unordered);
+stopwatch.Stop();
+
+Console.WriteLine(stopwatch.Elapsed);
+Console.WriteLine("Press a key to continue");
+Console.ReadKey();
+
+// foreach (var item in ordered)
+// {
+//   Console.WriteLine(item);
+// }
 
 static int[] MergeSort(int[] array)
 {
   int length = array.Length;
-  if (length <= 1) return array;
+  if (length <= 1) 
+    return array;
 
   int[] left = array[0..(length/2)];
   int[] right = array[(length/2 )..];
@@ -24,34 +39,39 @@ static int[] MergeSort(int[] array)
 
 }
 
+
+/*
+merge the two arrays, left and right
+the elements are added in ascending order
+*/
 static int[] Interpolate(int[] left, int[] right)
 {
-  int[] ordered = new int[left.Length + right.Length];
-  int currentIndex = 0;
+  List<int> ordered = [];
 
-  int itemL = 0;
-  int itemR = 0;
+  int leftIndex = 0;
+  int rightIndex = 0;
 
-  while (itemL < left.Length && itemR < right.Length)
+  while (leftIndex < left.Length && rightIndex < right.Length)
   {
-    if (left[itemL] < right[itemR])
+    if (left[leftIndex] < right[rightIndex])
     {
-      ordered[currentIndex++] = left[itemL++];
+      ordered.Add(left[leftIndex++]);
     }
     else
     {
-      ordered[currentIndex++] = right[itemR++];
+      ordered.Add(right[rightIndex++]);
     }
   }
 
-  while (itemL < left.Length)
+  if (leftIndex < left.Length)
   {
-    ordered[currentIndex++] = left[itemL++];
+    ordered.AddRange(left[leftIndex..]);
   }
-  while (itemR < right.Length)
+  if (rightIndex < right.Length)
   {
-    ordered[currentIndex++] = right[itemR++];
+    ordered.AddRange(right[rightIndex..]);
   }
 
-  return ordered;
+  //return the list as an array
+  return [.. ordered];
 }
