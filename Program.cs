@@ -17,8 +17,14 @@ for (int i = 0; i < size; i++)
 // int[] c = new int[a.Length];
 // Array.Copy(a, c, a.Length);
 
-int[] d = new int[a.Length];
-Array.Copy(a, d, a.Length);
+// int[] d = new int[a.Length];
+// Array.Copy(a, d, a.Length);
+
+// int[] e = new int[a.Length];
+// Array.Copy(a, e, a.Length);
+
+int[] f = new int[a.Length];
+Array.Copy(a, f, a.Length);
 
 // stopwatch.Start();
 // S.MergeSort(a);
@@ -37,12 +43,22 @@ Array.Copy(a, d, a.Length);
 // WriteLine("Quick Sort: \t" + stopwatch.Elapsed);
 
 
-stopwatch.Start();
-S.InsertionSort(d);
-stopwatch.Stop();
-WriteLine("Insertion Sort: \t" + stopwatch.Elapsed);
+// stopwatch.Start();
+// S.InsertionSort(d);
+// stopwatch.Stop();
+// WriteLine("Insertion Sort: \t" + stopwatch.Elapsed);
 
-foreach (var i in d)
+// stopwatch.Start();
+// S.ShellSort(e);
+// stopwatch.Stop();
+// WriteLine("Shell Sort: \t" + stopwatch.Elapsed);
+
+stopwatch.Start();
+S.StraightSort(f);
+stopwatch.Stop();
+WriteLine("Selection Sort: \t" + stopwatch.Elapsed);
+
+foreach (var i in f)
 {
   Write(i + " ");
 }

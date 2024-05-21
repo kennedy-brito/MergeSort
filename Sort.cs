@@ -130,12 +130,95 @@ public class Sort
     {
       int elemento = arr[k];
       int i = k - 1;
-      while(i >= 0 && arr[i] > elemento)
+      while (i >= 0 && arr[i] > elemento)
       {
         arr[i + 1] = arr[i];
         i--;
       }
       arr[i + 1] = elemento;
+    }
+  }
+
+  public static void ShellSort(int[] arr)
+  {
+    int i, j, k = 1;
+    while (k < arr.Length / 3)
+    {
+      k = 3 * k + 1;
+    }
+
+    while (k > 0)
+    {
+      for (i = k; i < arr.Length; i++)
+      {
+        int aux = arr[i];
+        j = i;
+
+        while (j >= k && arr[j - k] > aux)
+        {
+          arr[j] = arr[j - k];
+          j = j - k;
+        }
+
+        arr[j] = aux;
+
+      }
+
+      k = (k - 1) / 3;
+    }
+
+  }
+
+  public static void ShellSort(int[] arr, bool usar)
+  {
+    int i, j, k = 1;
+    int TAM = arr.Length;
+
+    // Calcula o intervalo inicial (gap)
+    while (k < TAM / 3)
+    {
+      k = 3 * k + 1; // Exemplo: 1, 4, 13, 40, etc.
+    }
+
+    // Reduz o intervalo e ordena os subarrays
+    while (k > 0)
+    {
+      // Ordena subarrays usando insertion sort com intervalo k
+      for (i = k; i < TAM; i++)
+      {
+        int temp = arr[i];
+        j = i;
+
+        // Move elementos do subarray para a posição correta
+        while (j >= k && arr[j - k] > temp)
+        {
+          arr[j] = arr[j - k];
+          j -= k;
+        }
+        arr[j] = temp;
+      }
+
+      // Reduz o intervalo para a próxima iteração
+      k = (k - 1) / 3;
+    }
+  }
+
+  public static void StraightSort(int[] arr)
+  {
+    int smallest;
+    int i, j;
+    for (i = 0; i < arr.Length - 1; i++)
+    {
+      smallest = i;
+
+      for (j = i + 1; j < arr.Length; j++)
+      {
+        if (arr[j] < arr[smallest])
+        {
+          smallest = j;
+        }
+      }
+      (arr[smallest], arr[i]) = (arr[i], arr[smallest]);
     }
   }
 }
