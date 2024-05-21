@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Reflection.Metadata;
 
 namespace Sort;
@@ -39,7 +40,7 @@ public class Sort
     Merge(arr, inicio, meio, fim);
   }
 
-  public static void Merge(int[] arr, int inicio, int meio, int fim)
+  private static void Merge(int[] arr, int inicio, int meio, int fim)
   {
     int[] aux = new int[fim - inicio + 1];
     int esq = inicio, dir = meio + 1, k = 0;
@@ -81,4 +82,45 @@ public class Sort
     }
   }
 
+  public static void QuickSort(int[] arr, int start, int end)
+  {
+    if(start < end)
+    {
+      int p = Partition(arr, start, end);
+
+      QuickSort(arr, start, p - 1);
+      QuickSort(arr, p + 1, end);
+    }
+  }
+
+  private static int Partition(int[] arr, int low, int high)
+  {
+    //pivot is the low threshold
+    //and low starts after the pivot
+    int pivot = low;
+    
+    while(low < high)
+    {
+      //searching a low that is greater than the pivot
+      //it stops if low cross high
+      while (arr[low] < arr[pivot] && low < high)
+      {
+        low++;
+      }
+      //searching a high that is lesser than the pivot
+      //it stops if high cross low
+      while (arr[pivot] < arr[high] && low < high )
+      {
+        high--;
+      }
+
+      if(low < high)
+      {
+        (arr[low], arr[high]) = (arr[high], arr[low]);
+      }
+    }
+
+    (arr[pivot], arr[high]) = (arr[high], arr[pivot]);
+    return pivot;
+  }  
 }

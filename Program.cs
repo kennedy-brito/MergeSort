@@ -17,15 +17,24 @@ Array.Copy(a, b, a.Length);
 int[] c = new int[a.Length];
 Array.Copy(a, c, a.Length);
 
+// stopwatch.Start();
+// S.MergeSort(a);
+// stopwatch.Stop();
+
+// WriteLine("Merge Sort: \t" + stopwatch.Elapsed);
+
+// stopwatch.Start();
+// S.BubbleSort(b);
+// stopwatch.Stop();
+// WriteLine("Bubble Sort: \t" + stopwatch.Elapsed);
+
 stopwatch.Start();
-S.MergeSort(a);
+S.QuickSort(c, 0, c.Length - 1);
 stopwatch.Stop();
+WriteLine("Quick Sort: \t" + stopwatch.Elapsed);
 
-Console.WriteLine("Merge Sort: \t" + stopwatch.Elapsed);
-
-stopwatch.Start();
-S.BubbleSort(b);
-stopwatch.Stop();
-Console.WriteLine("Bubble Sort: \t" + stopwatch.Elapsed);
-
-Console.WriteLine();
+foreach (var i in c)
+{
+  Write(i + " ");
+}
+WriteLine();
