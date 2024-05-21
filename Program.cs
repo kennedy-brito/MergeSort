@@ -1,77 +1,31 @@
 ﻿using System.Diagnostics;
+using S = Sort.Sort;
+int size = 10;
 
-int size = 70000000;
-
-int[] unordered = new int[size];
+int[] a = new int[size];
 var dice = new Random();
 var stopwatch = new Stopwatch();
 
 for (int i = 0; i < size; i++)
 {
-  unordered[i] = dice.Next(-1000,1000);
+  a[i] = dice.Next(-1000, 1000);
 }
+
+int[] b = new int[a.Length];
+Array.Copy(a, b, a.Length);
+
+int[] c = new int[a.Length];
+Array.Copy(a, c, a.Length);
+
 stopwatch.Start();
-int[] ordered = MergeSort(unordered);
+S.MergeSort(a);
 stopwatch.Stop();
 
-Console.WriteLine(stopwatch.Elapsed);
-Console.WriteLine("Press a key to continue");
-Console.ReadKey();
+Console.WriteLine("Merge Sort: \t" + stopwatch.Elapsed);
 
-// foreach (var item in ordered)
-// {
-//   Console.WriteLine(item);
-// }
+stopwatch.Start();
+S.BubbleSort(b);
+stopwatch.Stop();
+Console.WriteLine("Bubble Sort: \t" + stopwatch.Elapsed);
 
-static int[] MergeSort(int[] array)
-{
-  int length = array.Length;
-  if (length <= 1) 
-    return array;
-
-  int[] left = array[0..(length/2)];
-  int[] right = array[(length/2 )..];
-  
-  left = MergeSort(left);
-  right = MergeSort(right);
-
-  return Interpolate(left, right);
-
-}
-
-
-/*
-merge the two arrays, left and right
-the elements are added in ascending order
-*/
-static int[] Interpolate(int[] left, int[] right)
-{
-  List<int> ordered = [];
-
-  int leftIndex = 0;
-  int rightIndex = 0;
-
-  while (leftIndex < left.Length && rightIndex < right.Length)
-  {
-    if (left[leftIndex] < right[rightIndex])
-    {
-      ordered.Add(left[leftIndex++]);
-    }
-    else
-    {
-      ordered.Add(right[rightIndex++]);
-    }
-  }
-
-  if (leftIndex < left.Length)
-  {
-    ordered.AddRange(left[leftIndex..]);
-  }
-  if (rightIndex < right.Length)
-  {
-    ordered.AddRange(right[rightIndex..]);
-  }
-
-  //return the list as an array
-  return [.. ordered];
-}
+Console.WriteLine();
