@@ -84,7 +84,7 @@ public class Sort
 
   public static void QuickSort(int[] arr, int start, int end)
   {
-    if(start < end)
+    if (start < end)
     {
       int p = Partition(arr, start, end);
 
@@ -98,8 +98,8 @@ public class Sort
     //pivot is the low threshold
     //and low starts after the pivot
     int pivot = low;
-    
-    while(low < high)
+
+    while (low < high)
     {
       //searching a low that is greater than the pivot
       //it stops if low cross high
@@ -109,12 +109,12 @@ public class Sort
       }
       //searching a high that is lesser than the pivot
       //it stops if high cross low
-      while (arr[pivot] < arr[high] && low < high )
+      while (arr[pivot] < arr[high] && low < high)
       {
         high--;
       }
 
-      if(low < high)
+      if (low < high)
       {
         (arr[low], arr[high]) = (arr[high], arr[low]);
       }
@@ -122,5 +122,20 @@ public class Sort
 
     (arr[pivot], arr[high]) = (arr[high], arr[pivot]);
     return pivot;
-  }  
+  }
+
+  public static void InsertionSort(int[] arr)
+  {
+    for (int k = 1; k < arr.Length; k++)
+    {
+      int elemento = arr[k];
+      int i = k - 1;
+      while(i >= 0 && arr[i] > elemento)
+      {
+        arr[i + 1] = arr[i];
+        i--;
+      }
+      arr[i + 1] = elemento;
+    }
+  }
 }
