@@ -1,65 +1,47 @@
-﻿using System.Diagnostics;
-using S = Sort.Sort;
-int size = 10;
+﻿
+using System.Diagnostics;
+using St = Sort.Sort;
 
-int[] a = new int[size];
-var dice = new Random();
-var stopwatch = new Stopwatch();
-
-for (int i = 0; i < size; i++)
+for (int i = 500; i <= 1000000; i*=10)
 {
-  a[i] = dice.Next(0, 2000);
+  int size = i;
+  int[] originalArray = GenerateRandomArray(size);
+
+  WriteLine($"Size: {size:N}");
+  TestSortAlgorithm("Merge Sort ", originalArray, arr => St.MergeSort(arr));
+  TestSortAlgorithm("Bubble Sort", originalArray, arr => St.BubbleSort(arr));
+  TestSortAlgorithm("Insertion  ", originalArray, arr => St.InsertionSort(arr));
+  TestSortAlgorithm("Shell Sort ", originalArray, arr => St.ShellSort(arr));
+  TestSortAlgorithm("Selection  ", originalArray, arr => St.StraightSort(arr));
+  TestSortAlgorithm("Heap Sort  ", originalArray, arr => St.HeapSort(arr));
+  TestSortAlgorithm("Quick Sort ", originalArray, arr => St.QuickSort(arr, 0, arr.Length - 1));
+  WriteLine();
 }
 
-// int[] b = new int[a.Length];
-// Array.Copy(a, b, a.Length);
-
-// int[] c = new int[a.Length];
-// Array.Copy(a, c, a.Length);
-
-// int[] d = new int[a.Length];
-// Array.Copy(a, d, a.Length);
-
-// int[] e = new int[a.Length];
-// Array.Copy(a, e, a.Length);
-
-int[] f = new int[a.Length];
-Array.Copy(a, f, a.Length);
-
-// stopwatch.Start();
-// S.MergeSort(a);
-// stopwatch.Stop();
-
-// WriteLine("Merge Sort: \t" + stopwatch.Elapsed);
-
-// stopwatch.Start();
-// S.BubbleSort(b);
-// stopwatch.Stop();
-// WriteLine("Bubble Sort: \t" + stopwatch.Elapsed);
-
-// stopwatch.Start();
-// S.QuickSort(c, 0, c.Length - 1);
-// stopwatch.Stop();
-// WriteLine("Quick Sort: \t" + stopwatch.Elapsed);
-
-
-// stopwatch.Start();
-// S.InsertionSort(d);
-// stopwatch.Stop();
-// WriteLine("Insertion Sort: \t" + stopwatch.Elapsed);
-
-// stopwatch.Start();
-// S.ShellSort(e);
-// stopwatch.Stop();
-// WriteLine("Shell Sort: \t" + stopwatch.Elapsed);
-
-stopwatch.Start();
-S.StraightSort(f);
-stopwatch.Stop();
-WriteLine("Selection Sort: \t" + stopwatch.Elapsed);
-
-foreach (var i in f)
+static void TestSortAlgorithm(string algorithmName, int[] originalArray, Action<int[]> sortFunction)
 {
-  Write(i + " ");
+  int[] arrayToSort = new int[originalArray.Length];
+  Array.Copy(originalArray, arrayToSort, originalArray.Length);
+
+  var stopwatch = new Stopwatch();
+  stopwatch.Start();
+
+  sortFunction(arrayToSort);
+
+  stopwatch.Stop();
+  WriteLine($"{algorithmName}: {stopwatch.Elapsed}");
+  // Imprime o array ordenado para verificar a correção
+  // WriteLine(string.Join(" ", arrayToSort));
 }
-WriteLine();
+
+static int[] GenerateRandomArray(int size)
+{
+  var random = new Random();
+  int[] array = new int[size];
+  for (int i = 0; i < size; i++)
+  {
+    array[i] = random.Next(0, 2000);
+  }
+  return array;
+}
+
