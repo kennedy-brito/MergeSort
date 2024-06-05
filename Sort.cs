@@ -26,7 +26,13 @@ public static class Sort
       }
     }
   }
-  public static void MergeSort(int[] arr, int inicio = 0, int fim = -1)
+  public static void MergeSort(int[] arr)
+  {
+    int[] aux = new int[arr.Length];
+    MergeSort(arr, aux);
+  }
+
+  public static void MergeSort(int[] arr, int[] aux, int inicio = 0, int fim = -1)
   {
     fim = (fim < 0) ? arr.Length - 1 : fim;
 
@@ -34,29 +40,28 @@ public static class Sort
 
     int meio = inicio + (fim - inicio) / 2;
 
-    MergeSort(arr, inicio, meio);
-    MergeSort(arr, meio + 1, fim);
+    MergeSort(arr, aux, inicio, meio);
+    MergeSort(arr, aux, meio + 1, fim);
 
-    Merge(arr, inicio, meio, fim);
+    Merge(arr, aux, inicio, meio, fim);
   }
 
-  private static void Merge(int[] arr, int inicio, int meio, int fim)
+  private static void Merge(int[] arr, int[] aux, int inicio, int meio, int fim)
   {
-    int[] aux = new int[fim - inicio + 1];
-    int esq = inicio, dir = meio + 1, k = 0;
+    int esq = inicio, dir = meio + 1, k = inicio;
 
     while (esq <= meio && dir <= fim)
     {
       if (arr[dir] < arr[esq])
       {
         aux[k] = arr[dir];
-        ++dir;
-        ++k;
+        dir++;
+        k++;
       }
       else
       {
         aux[k] = arr[esq];
-        ++k;
+        k++;
         esq++;
       }
 
@@ -76,9 +81,9 @@ public static class Sort
     }
 
     //trocando os valores do vetor
-    for (int i = 0; i < aux.Length; i++)
+    for (int i = inicio; i <= fim; i++)
     {
-      arr[inicio + i] = aux[i];
+      arr[i] = aux[i];
     }
   }
 
@@ -100,9 +105,9 @@ public static class Sort
     
     pivo = a[limInf]; 
     alto = limSup;
-    baixo = limInf+1; 
+    baixo = limInf; 
     while (baixo<alto){
-      while (a[baixo] < pivo && baixo < limSup)
+      while (a[baixo] <= pivo && baixo < limSup)
       {
         baixo++; // Sobe no arquivo.
       }
@@ -117,7 +122,8 @@ public static class Sort
         a[alto] = temp;
       }
     } 
-    a[limInf] = a[alto]; a[alto] = pivo;
+    a[limInf] = a[alto]; 
+    a[alto] = pivo;
     return alto;
   }
 
@@ -166,40 +172,6 @@ public static void ShellSort(int[] arr)
 
 }
 
-public static void ShellSort(int[] arr, bool usar)
-{
-  int i, j, k = 1;
-  int TAM = arr.Length;
-
-  // Calcula o intervalo inicial (gap)
-  while (k < TAM / 3)
-  {
-    k = 3 * k + 1; // Exemplo: 1, 4, 13, 40, etc.
-  }
-
-  // Reduz o intervalo e ordena os subarrays
-  while (k > 0)
-  {
-    // Ordena subarrays usando insertion sort com intervalo k
-    for (i = k; i < TAM; i++)
-    {
-      int temp = arr[i];
-      j = i;
-
-      // Move elementos do subarray para a posição correta
-      while (j >= k && arr[j - k] > temp)
-      {
-        arr[j] = arr[j - k];
-        j -= k;
-      }
-      arr[j] = temp;
-    }
-
-    // Reduz o intervalo para a próxima iteração
-    k = (k - 1) / 3;
-  }
-}
-
 public static void StraightSort(int[] arr)
 {
   int smallest;
@@ -219,53 +191,6 @@ public static void StraightSort(int[] arr)
   }
 }
 
-public static void HeapSort(int[] arr, bool dontUse)
-{
-  int n = arr.Length;
-  int i = n / 2, pai, filho, t;
-
-  while (true)
-  {
-    if (i > 0)
-    {
-      i--;
-      t = arr[i];
-    }
-    else
-    {
-      n--;
-
-      if (n <= 0) return;
-
-      t = arr[n];
-      arr[n] = arr[0];
-    }
-
-    pai = i;
-
-    filho = i * 2 + 1;
-
-    while (filho < n)
-    {
-      if ((filho + 1 < n) && (arr[filho + 1] > arr[filho]))
-      {
-        filho++;
-      }
-
-      if (arr[filho] > t)
-      {
-        arr[pai] = arr[filho];
-        pai = filho;
-        filho = pai * 2 + 1;
-      }
-      else
-      {
-        break;
-      }
-    }
-    arr[pai] = t;
-  }
-}
 public static void HeapSort(int[] arr)
 {
   int n = arr.Length;

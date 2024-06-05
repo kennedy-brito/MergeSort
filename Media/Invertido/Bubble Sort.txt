@@ -1,0 +1,5 @@
+media de vetor de 10 elementos: 00,0001652
+media de vetor de 100 elementos: 00,0000627
+media de vetor de 1000 elementos: 00,0051867
+media de vetor de 10000 elementos: 00,4463424
+media de vetor de 100000 elementos: 43,9336871

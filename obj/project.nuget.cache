@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LIHdSMHiiX7o6vd53bZwx0fvvieQAcUKSH2TiEPUSkoLYWc+PwhJu77aokZgfyAHaYuWPN0ZkRlkt9joaV/wbw==",
+  "dgSpecHash": "TKLIRdGHgBwqI2HInHt+xP6H1xAAe5fF9xvnu1q40vklM1dE4neUFmwp/QJ1poprVMGx37/uKOgA+1ELyrrAUQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\willi\\source\\repos\\c#\\MergeSort\\MergeSort.csproj",
+  "projectFilePath": "C:\\Users\\willi\\source\\repos\\c#\\SortMethods\\Sort.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

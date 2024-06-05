@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\willi\\source\\repos\\c#\\MergeSort\\MergeSort.csproj": {}
+    "C:\\Users\\willi\\source\\repos\\c#\\SortMethods\\MergeSort.csproj": {}
   },
   "projects": {
-    "C:\\Users\\willi\\source\\repos\\c#\\MergeSort\\MergeSort.csproj": {
+    "C:\\Users\\willi\\source\\repos\\c#\\SortMethods\\MergeSort.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\willi\\source\\repos\\c#\\MergeSort\\MergeSort.csproj",
+        "projectUniqueName": "C:\\Users\\willi\\source\\repos\\c#\\SortMethods\\MergeSort.csproj",
         "projectName": "MergeSort",
-        "projectPath": "C:\\Users\\willi\\source\\repos\\c#\\MergeSort\\MergeSort.csproj",
+        "projectPath": "C:\\Users\\willi\\source\\repos\\c#\\SortMethods\\MergeSort.csproj",
         "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\willi\\source\\repos\\c#\\MergeSort\\obj\\",
+        "outputPath": "C:\\Users\\willi\\source\\repos\\c#\\SortMethods\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.206/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
